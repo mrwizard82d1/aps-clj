@@ -1,6 +1,6 @@
 # apatterns
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure library implementing ideas in "Analysis Patterns" by Martin Fowler.
 
 ## Usage
 
