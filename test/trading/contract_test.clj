@@ -11,10 +11,22 @@
     (let [counterparty (ap/make)
           instrument (ti/make)
           amount 31
-          price (ma/amount-of mc/USD 4.15)
-          cut (tc/make counterparty instrument amount price)]
-      (testing "When create contract between host and counterparty"
-        (is (= counterparty (tc/counterparty cut)))
-        (is (= instrument (:instrument cut)))
-        (is (= amount (:amount cut)))
-        (is (= price (:price cut)))))))
+          price (ma/amount-of mc/USD 4.15)]
+      (testing "When create long contract (primary party implied)"
+        (let [long-cut
+              (tc/make-long counterparty instrument amount price)]
+          (is (= :this-organization (tc/primary-party long-cut)))
+          (is (= counterparty (tc/counterparty long-cut)))
+          (is (= instrument (:instrument long-cut)))
+          (is (= amount (:amount long-cut)))
+          (is (= price (:price long-cut)))
+          (is (= :long (:position long-cut)))))
+      (testing "When create short contract (primary party implied)"
+        (let [short-cut
+              (tc/make-short counterparty instrument amount price)]
+          (is (= :this-organization (tc/primary-party short-cut)))
+          (is (= counterparty (tc/counterparty short-cut)))
+          (is (= instrument (:instrument short-cut)))
+          (is (= amount (:amount short-cut)))
+          (is (= price (:price short-cut)))
+          (is (= :short (:position short-cut))))))))
