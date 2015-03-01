@@ -1,18 +1,18 @@
 (ns trading.contract)
 
-(defn make-long [counterparty instrument amount price]
+(defn- make [counterparty instrument amount price]
   {:counterparty counterparty
    :instrument instrument
    :amount amount
-   :price price
-   :position :long})
+   :price price})
+
+(defn make-long [counterparty instrument amount price]
+  (-> (make counterparty instrument amount price)
+      (assoc :position :long)))
 
 (defn make-short [counterparty instrument amount price]
-  {:counterparty counterparty
-   :instrument instrument
-   :amount amount
-   :price price
-   :position :short})
+  (-> (make counterparty instrument amount price)
+      (assoc :position :short)))
 
 (defn primary-party [contract]
   (get :counterparty contract :this-organization))
