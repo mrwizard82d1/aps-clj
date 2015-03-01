@@ -1,3 +1,3 @@
 (ns accountability.party)
 
-(defn make [] {:party nil})
+(defn make [name] {:party {:name name}})
