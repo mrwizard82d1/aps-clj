@@ -6,4 +6,7 @@
    :amount amount
    :price price})
 
+(defn counterparty [contract]
+      (:counterparty contract))
+
 

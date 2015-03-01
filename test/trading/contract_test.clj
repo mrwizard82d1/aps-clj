@@ -14,7 +14,7 @@
           price (ma/amount-of mc/USD 4.15)
           cut (tc/make counterparty instrument amount price)]
       (testing "When create contract between host and counterparty"
-        (is (= counterparty (:counterparty cut)))
+        (is (= counterparty (tc/counterparty cut)))
         (is (= instrument (:instrument cut)))
         (is (= amount (:amount cut)))
         (is (= price (:price cut)))))))
