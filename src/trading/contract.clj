@@ -1,7 +1,7 @@
 (ns trading.contract)
 
-(defn make [party instrument amount price]
-  {:party party
+(defn make [counterparty instrument amount price]
+  {:counterparty counterparty
    :instrument instrument
    :amount amount
    :price price})
